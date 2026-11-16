@@ -1,0 +1,28 @@
+
+
+.columns{
+display:flex;
+gap: 16px;
+}
+
+
+.task-list{
+width: 260px;
+padding:16px;
+background: #f1f2f4;
+border-radius: 8px;
+padding-top: 4px;
+}
+
+.task-card{
+background: white;
+padding: 12px;
+margin-bottom: 10px;
+border-radius: 8px;
+
+
+}
+
+.task-card.high-priority {
+  border-left: 4px solid #d93025;
+}

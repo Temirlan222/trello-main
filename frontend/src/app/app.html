@@ -1,0 +1,31 @@
+<h1>Trello</h1>
+<p>Организуйте задачи на досках: создавайте колонки и карточки, указывайте приоритеты и сроки, перемещайте карточки между этапами. А подборка важных задач поможет понять, за что взяться в первую очередь.</p>
+<h2>Мои доски</h2>
+  @for (board of boards(); track board.id) {
+<button (click)="toggleBoard(board.id)">
+  {{ board.name }}
+</button>
+
+@if (openedBoardId === board.id) {
+<div class = "columns">
+  @for (list of board.lists; track list.id) {
+  <section class = "task-list">
+    <h3>{{list.name}}</h3>
+    @for(card of list.cards; track card.id){
+    <article class = "task-card" [class.high-priority]="card.priority === 'HIGH'">
+    <strong>{{card.title}}</strong>
+    <p>Приоритет: {{card.priority}}</p>
+    <p>Дедлайн: {{card.dueDate}}</p>
+    </article>
+    }@empty{<p>У этой колонки нету карточек</p>}
+  </section>
+
+
+  }
+  @empty{
+    <p>Эта доска пуста</p>}
+</div>
+
+}
+}
+
