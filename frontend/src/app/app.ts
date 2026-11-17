@@ -1,5 +1,4 @@
-import { Component, signal,inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 interface Card {
   id: number;
@@ -7,7 +6,7 @@ interface Card {
   priority: string;
   dueDate: string;
   description: string;
-  }
+}
 interface FocusCard {
   id: number;
   title: string;
@@ -15,21 +14,20 @@ interface FocusCard {
   score: number;
   reason: string;
 }
-interface TaskList{
+interface TaskList {
   id: number;
   name: string;
   cards: Card[];
   isDone: boolean;
-  }
+}
 
-interface Board{
-  id:number;
+interface Board {
+  id: number;
   name: string;
   lists: TaskList[];
-  }
+}
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -40,26 +38,25 @@ export class App {
   loadError = signal(false);
   isLoading = signal(true);
 
-  focusCards = signal <FocusCard[]>([]);
+  focusCards = signal<FocusCard[]>([]);
   focusedBoardId = signal<number | null>(null);
   focusErrorBoardId = signal<number | null>(null);
 
   loadFocus(boardId: number) {
     this.focusErrorBoardId.set(null);
 
-  this.http.get<FocusCard[]>(`/api/boards/${boardId}/focus`).subscribe({
-    next: (cards) =>{
+    this.http.get<FocusCard[]>(`/api/boards/${boardId}/focus`).subscribe({
+      next: (cards) => {
         this.focusCards.set(cards);
         this.focusedBoardId.set(boardId);
-        },
-       error: () => {
-            this.focusCards.set([]);
-            this.focusedBoardId.set(null);
-            this.focusErrorBoardId.set(boardId);
-          }
-        });
+      },
+      error: () => {
+        this.focusCards.set([]);
+        this.focusedBoardId.set(null);
+        this.focusErrorBoardId.set(boardId);
+      },
+    });
   }
-
 
   boards = signal<Board[]>([]);
   ngOnInit() {
@@ -76,65 +73,86 @@ export class App {
       error: () => {
         this.loadError.set(true);
         this.isLoading.set(false);
-      }
+      },
     });
   }
 
   openedBoardId: number | null = null;
 
-  toggleBoard(id:number){
-    if(this.openedBoardId === id){
+  toggleBoard(id: number) {
+    if (this.openedBoardId === id) {
       this.openedBoardId = null;
-      }
-    else{
+    } else {
       this.openedBoardId = id;
-      }
     }
+  }
 
   openedCardId: number | null = null;
 
-  toggleCard(id:number){
-    if(this.openedCardId === id){
-      this.openedCardId = null
-      }
-    else{
+  toggleCard(id: number) {
+    if (this.openedCardId === id) {
+      this.openedCardId = null;
+    } else {
       this.openedCardId = id;
-      }
     }
+  }
 
-  addCard(cardTitle:string, listId:number){
+  addCard(cardTitle: string, listId: number) {
     const body = {
       title: cardTitle.trim(),
-      taskListId: listId
+      taskListId: listId,
     };
-    this.http.post('/api/cards',body).subscribe({
-      next: () => this.loadBoards()
+    this.http.post('/api/cards', body).subscribe({
+      next: () => this.loadBoards(),
     });
+  }
+
+  addBoard(boardName: string) {
+    const body = { name: boardName.trim() };
+    if (body.name == '') {
+      return;
     }
 
-  addBoard(boardName:string){
-    const body = {
-      name:boardName.trim()
-      }
-      if(body.name == ""){
-        return;
-        }
-      this.http.post('/api/boards',body).subscribe({
-        next: () => this.loadBoards()
-        });
+    this.http.post('/api/boards', body).subscribe({
+      next: () => this.loadBoards(),
+    });
+  }
+
+  addCol(colName: string, boardId: number) {
+    const body = { name: colName.trim(), boardId: boardId };
+    if (body.name == '') {
+      return;
     }
 
+    this.http.post('/api/tasklists', body).subscribe({
+      next: () => this.loadBoards(),
+    });
+  }
 
-
-  moveCard(cardId:number, targetListId:string){
+  moveCard(cardId: number, targetListId: string) {
     const body = {
-        taskListId: Number(targetListId)
+      taskListId: Number(targetListId),
+    };
+    this.http.patch(`/api/cards/${cardId}/move`, body).subscribe({
+      next: () => this.loadBoards(),
+    });
+  }
+
+  changeCardTitle(cardId: number,cardName:string){
+    const body = {
+      title: cardName,
+    };
+    this.http.patch(`/api/cards/${cardId}/title`,body).subscribe({
+        next: () => this.loadBoards(),
+      })
+    }
+
+  changeCardDesc(cardId:number, cardDesc:string){
+    const body = {
+        description:cardDesc,
       };
-    this.http.patch(`/api/cards/${cardId}/move`,body).subscribe({
-      next: () => this.loadBoards()
-    });
+    this.http.patch(`/api/cards/${cardId}/description`,body).subscribe({
+        next: () => this.loadBoards()
+      })
     }
-
-
-
 }
