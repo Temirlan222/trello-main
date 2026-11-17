@@ -1,3 +1,26 @@
+.app-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px;
+}
+
+.board-sidebar,
+.board-content {
+  min-width: 0;
+}
+
+.board-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@media (max-width: 700px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .columns {
   display: flex;
   gap: 16px;

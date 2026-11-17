@@ -96,14 +96,20 @@ export class App {
       this.openedCardId = id;
     }
   }
-
+  cardCreateErrorListId = signal<number | null>(null);
   addCard(cardTitle: string, listId: number) {
+    this.cardCreateErrorListId.set(null);
     const body = {
       title: cardTitle.trim(),
       taskListId: listId,
     };
+    if (body.title === '') {
+      return;
+    }
+
     this.http.post('/api/cards', body).subscribe({
       next: () => this.loadBoards(),
+      error: () => this.cardCreateErrorListId.set(listId),
     });
   }
 
@@ -155,4 +161,42 @@ export class App {
         next: () => this.loadBoards()
       })
     }
+
+  changeDate(cardId: number, cardDate: string) {
+    const body = { dueDate: cardDate || null };
+    this.http.patch(`/api/cards/${cardId}/due-date`, body).subscribe({
+      next: () => this.loadBoards(),
+    });
+  }
+
+  changePriority(cardId: number, priority: string) {
+    this.http.patch(`/api/cards/${cardId}/priority`, { priority }).subscribe({
+      next: () => this.loadBoards(),
+    });
+  }
+
+  deleteCard(cardId:number){
+    if (!window.confirm('Удалить карточку?')){
+      return;
+      }
+
+
+    this.http.delete(`/api/cards/${cardId}`).subscribe({
+      next: () => this.loadBoards()});
+
+    }
+
+  deleteBoard(boardId: number) {
+    if (!window.confirm('Удалить доску?')) {
+      return;
+    }
+
+    this.http.delete(`/api/boards/${boardId}`).subscribe({
+      next: () => this.loadBoards(),
+    });
+
+
+
+  }
+
 }
