@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+<rect width="1440" height="900" fill="#F6F8FC"/>
+<rect x="0" y="0" width="1440" height="68" rx="0" fill="#182640"/>
+<text x="26" y="44" fill="#FFFFFF" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700">◧  TrelloAI</text>
+<text x="1278" y="41" fill="#CBD7EB" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="500">Учебный проект</text>
+<rect x="0" y="68" width="220" height="832" rx="0" fill="#EAF0F8"/>
+<text x="22" y="112" fill="#62728C" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700">ДОСКИ</text>
+<rect x="12" y="130" width="196" height="48" rx="11" fill="#D9E7FF"/>
+<rect x="12" y="130" width="4" height="48" rx="2" fill="#496FD8"/>
+<text x="30" y="160" fill="#224383" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="700">Разработка</text>
+<text x="179" y="160" fill="#617BAA" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700">⋯</text>
+<text x="30" y="211" fill="#44546D" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="500">Учёба</text>
+<text x="30" y="251" fill="#44546D" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="500">Хакатон</text>
+<rect x="14" y="279" width="191" height="43" rx="10" fill="#FFFFFF" stroke="#CAD4E4" stroke-width="1"/>
+<text x="31" y="306" fill="#365FC1" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">+  Новая доска</text>
+<text x="252" y="117" fill="#172338" font-family="Segoe UI,Arial,sans-serif" font-size="29" font-weight="700">Разработка</text>
+<text x="253" y="144" fill="#6C7B93" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="400">Задачи команды и личные планы</text>
+<rect x="1257" y="93" width="153" height="42" rx="10" fill="#FFFFFF" stroke="#CBD5E4" stroke-width="1"/>
+<text x="1274" y="120" fill="#365FC1" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">+  Колонка</text>
+<rect x="248" y="169" width="1162" height="128" rx="16" fill="#E9EEFF"/>
+<text x="268" y="202" fill="#283D83" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">★  Важные задачи</text>
+<text x="1281" y="201" fill="#6375A2" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600">3 задачи</text>
+<rect x="268" y="215" width="356" height="62" rx="10" fill="#FFFFFF"/>
+<rect x="268" y="215" width="4" height="62" rx="2" fill="#D64E5B"/>
+<text x="285" y="241" fill="#20304B" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Подключить API</text>
+<text x="285" y="263" fill="#71819B" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">Высокий · до 18 ноя</text>
+<rect x="641" y="215" width="356" height="62" rx="10" fill="#FFFFFF"/>
+<rect x="641" y="215" width="4" height="62" rx="2" fill="#D59B2D"/>
+<text x="658" y="241" fill="#20304B" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Проверить формы</text>
+<text x="658" y="263" fill="#71819B" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">Средний · до 21 ноя</text>
+<rect x="1014" y="215" width="356" height="62" rx="10" fill="#FFFFFF"/>
+<rect x="1014" y="215" width="4" height="62" rx="2" fill="#D64E5B"/>
+<text x="1031" y="241" fill="#20304B" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Подготовить демо</text>
+<text x="1031" y="263" fill="#71819B" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">Высокий · до 22 ноя</text>
+<rect x="248" y="316" width="277" height="533" rx="14" fill="#ECF0F6"/>
+<text x="265" y="352" fill="#1E304A" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">Запланировано</text>
+<rect x="487" y="331" width="22" height="22" rx="11" fill="#DAE1EB"/>
+<text x="494" y="347" fill="#62718A" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">2</text>
+<rect x="260" y="371" width="253" height="139" rx="11" fill="#FFFFFF" stroke="#DFE5EF" stroke-width="1"/>
+<rect x="260" y="371" width="4" height="139" rx="2" fill="#D64E5B"/>
+<text x="275" y="400" fill="#1C2B44" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Продумать дизайн доски</text>
+<text x="494" y="400" fill="#8694AA" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700">⋯</text>
+<rect x="275" y="414" width="91" height="24" rx="12" fill="#FBE6E9"/>
+<text x="285" y="431" fill="#D64E5B" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="700">ВЫСОКИЙ</text>
+<text x="275" y="473" fill="#718098" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">◷  Срок: 20 ноя</text>
+<text x="478" y="482" fill="#8D9BB0" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="500">›</text>
+<rect x="260" y="526" width="253" height="139" rx="11" fill="#FFFFFF" stroke="#DFE5EF" stroke-width="1"/>
+<rect x="260" y="526" width="4" height="139" rx="2" fill="#D59B2D"/>
+<text x="275" y="555" fill="#1C2B44" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Добавить создание досок</text>
+<rect x="275" y="569" width="90" height="24" rx="12" fill="#FFF1D8"/>
+<text x="285" y="586" fill="#D59B2D" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="700">СРЕДНИЙ</text>
+<text x="275" y="628" fill="#718098" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">◷  Срок: 22 ноя</text>
+<text x="478" y="637" fill="#8D9BB0" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="500">›</text>
+<rect x="260" y="789" width="253" height="44" rx="9" fill="#F8FAFD" stroke="#CCD6E3" stroke-width="1"/>
+<text x="275" y="817" fill="#4266BA" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">+  Добавить карточку</text>
+<rect x="543" y="316" width="277" height="533" rx="14" fill="#ECF0F6"/>
+<text x="560" y="352" fill="#1E304A" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">В работе</text>
+<rect x="782" y="331" width="22" height="22" rx="11" fill="#DAE1EB"/>
+<text x="789" y="347" fill="#62718A" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">2</text>
+<rect x="555" y="371" width="253" height="139" rx="11" fill="#FFFFFF" stroke="#DFE5EF" stroke-width="1"/>
+<rect x="555" y="371" width="4" height="139" rx="2" fill="#D64E5B"/>
+<text x="570" y="400" fill="#1C2B44" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Подключить API</text>
+<rect x="570" y="414" width="91" height="24" rx="12" fill="#FBE6E9"/>
+<text x="580" y="431" fill="#D64E5B" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="700">ВЫСОКИЙ</text>
+<text x="570" y="473" fill="#718098" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">◷  Срок: 18 ноя</text>
+<text x="773" y="482" fill="#8D9BB0" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="500">›</text>
+<rect x="555" y="526" width="253" height="139" rx="11" fill="#FFFFFF" stroke="#DFE5EF" stroke-width="1"/>
+<rect x="555" y="526" width="4" height="139" rx="2" fill="#D59B2D"/>
+<text x="570" y="555" fill="#1C2B44" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Создание карточек</text>
+<rect x="570" y="569" width="90" height="24" rx="12" fill="#FFF1D8"/>
+<text x="580" y="586" fill="#D59B2D" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="700">СРЕДНИЙ</text>
+<text x="570" y="628" fill="#718098" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">◷  Срок: 21 ноя</text>
+<text x="773" y="637" fill="#8D9BB0" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="500">›</text>
+<rect x="555" y="789" width="253" height="44" rx="9" fill="#F8FAFD" stroke="#CCD6E3" stroke-width="1"/>
+<text x="570" y="817" fill="#4266BA" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">+  Добавить карточку</text>
+<rect x="838" y="316" width="277" height="533" rx="14" fill="#ECF0F6"/>
+<text x="855" y="352" fill="#1E304A" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">На проверке</text>
+<rect x="1077" y="331" width="22" height="22" rx="11" fill="#DAE1EB"/>
+<text x="1084" y="347" fill="#62718A" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">1</text>
+<rect x="850" y="371" width="253" height="139" rx="11" fill="#FFFFFF" stroke="#DFE5EF" stroke-width="1"/>
+<rect x="850" y="371" width="4" height="139" rx="2" fill="#D59B2D"/>
+<text x="865" y="400" fill="#1C2B44" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Проверить формы</text>
+<rect x="865" y="414" width="90" height="24" rx="12" fill="#FFF1D8"/>
+<text x="875" y="431" fill="#D59B2D" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="700">СРЕДНИЙ</text>
+<text x="865" y="473" fill="#718098" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">◷  Срок: 21 ноя</text>
+<text x="1068" y="482" fill="#8D9BB0" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="500">›</text>
+<rect x="850" y="789" width="253" height="44" rx="9" fill="#F8FAFD" stroke="#CCD6E3" stroke-width="1"/>
+<text x="865" y="817" fill="#4266BA" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">+  Добавить карточку</text>
+<rect x="1133" y="316" width="277" height="533" rx="14" fill="#ECF0F6"/>
+<text x="1150" y="352" fill="#1E304A" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">Готово</text>
+<rect x="1372" y="331" width="22" height="22" rx="11" fill="#DAE1EB"/>
+<text x="1379" y="347" fill="#62718A" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700">1</text>
+<rect x="1145" y="371" width="253" height="139" rx="11" fill="#FFFFFF" stroke="#DFE5EF" stroke-width="1"/>
+<rect x="1145" y="371" width="4" height="139" rx="2" fill="#3D9876"/>
+<text x="1160" y="400" fill="#1C2B44" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">Запустить бэкенд</text>
+<rect x="1160" y="414" width="69" height="24" rx="12" fill="#E2F4EC"/>
+<text x="1170" y="431" fill="#3D9876" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="700">НИЗКИЙ</text>
+<text x="1160" y="473" fill="#718098" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">◷  Срок: 16 ноя</text>
+<text x="1363" y="482" fill="#8D9BB0" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="500">›</text>
+<rect x="1145" y="789" width="253" height="44" rx="9" fill="#F8FAFD" stroke="#CCD6E3" stroke-width="1"/>
+<text x="1160" y="817" fill="#4266BA" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600">+  Добавить карточку</text>
+<text x="250" y="879" fill="#75839A" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="400">Карточка открывает описание, редактирование и перенос. Меню ⋯ даёт удаление.</text>
+</svg>

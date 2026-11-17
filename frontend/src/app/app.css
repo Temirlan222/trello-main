@@ -26,3 +26,22 @@ border-radius: 8px;
 .task-card.high-priority {
   border-left: 4px solid #d93025;
 }
+
+.task-card.medium-priority {
+  border-left: 4px solid #BA8E23;
+}
+
+.task-card.low-priority {
+  border-left: 4px solid green;
+}
+
+
+.task-card label {
+display: block;
+margin-bottom: 12px;
+}
+
+.task-card button{
+display: block;
+margin-bottom: 12px;
+}
