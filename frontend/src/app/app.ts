@@ -78,6 +78,7 @@ export class App {
   }
 
   openedBoardId: number | null = null;
+  boardActionsId: number | null = null;
 
   toggleBoard(id: number) {
     if (this.openedBoardId === id) {
@@ -187,6 +188,7 @@ export class App {
     }
 
   deleteBoard(boardId: number) {
+    this.boardActionsId = null;
     if (!window.confirm('Удалить доску?')) {
       return;
     }

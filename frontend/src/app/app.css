@@ -1,9 +1,7 @@
 .app-header {
   background-color:#0F172A;
   color:#F8FAFC;
-  padding: 4px;
-  margin-bottom: 50px;
-  padding-left: 30px;
+  padding: 12px 24px;
 }
 
 .start-allert{
@@ -14,10 +12,18 @@
 
 }
 
+.board-name{
+  flex:1;
+  text-align:left;
+  background-color: transparent;
+  border:none;
+  padding: 8px 12px;
+}
+
 
 
 .app-desk{
-  background: #DBEAFE;
+  background:#DBEAFE;
   color: #1E40AF;
 }
 
@@ -47,6 +53,24 @@
   inline-size: fit-content;
 }
 
+
+.board-toolbar{
+  display:flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.board-sidebar{
+  background-color: #EAF0F8;
+  padding: 16px;
+}
+
+.board-content{
+  margin-left: 10px;
+
+}
+
+
 .app-header p{
   color: #CBD5E1;
 }
@@ -62,7 +86,6 @@
 .board-sidebar,
 .board-content {
   min-width: 0;
-  margin-left: 10px;
 }
 
 .board-row {
