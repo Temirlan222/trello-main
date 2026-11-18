@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Trello Full Stack" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
+    <toRun name="Trello Backend" type="Application" />
+    <toRun name="Trello Frontend" type="js.build_tools.npm" />
+    <method v="2" />
+  </configuration>
+</component>

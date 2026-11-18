@@ -1,33 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Trello Backend" type="MavenRunConfiguration" factoryName="Maven">
-    <MavenSettings>
-      <option name="myGeneralSettings" />
-      <option name="myRunnerSettings" />
-      <option name="myRunnerParameters">
-        <MavenRunnerParameters>
-          <option name="cmdOptions" />
-          <option name="profiles">
-            <set />
-          </option>
-          <option name="goals">
-            <list>
-              <option value="-o" />
-              <option value="spring-boot:run" />
-            </list>
-          </option>
-          <option name="multimoduleDir" />
-          <option name="pomFileName" />
-          <option name="profilesMap">
-            <map />
-          </option>
-          <option name="projectsCmdOptionValues">
-            <list />
-          </option>
-          <option name="resolveToWorkspace" value="false" />
-          <option name="workingDirPath" value="C:\Users\geome\Documents\Codex\Trello" />
-        </MavenRunnerParameters>
-      </option>
-    </MavenSettings>
-    <method v="2" />
+  <configuration default="false" name="Trello Backend" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.example.trellomain.TrelloMainApplication" />
+    <module name="trello-main" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
   </configuration>
 </component>
