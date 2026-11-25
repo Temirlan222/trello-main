@@ -1,0 +1,9 @@
+body{
+  background-color: #F8FAFC;
+  font-family: system-ui,sans-serif;
+  margin: 0;
+}
+
+button,input,select,textarea{
+  font-family: inherit;
+}

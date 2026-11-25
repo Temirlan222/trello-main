@@ -1,10 +1,5 @@
-<header class = "app-header">
-<h1 >Trello</h1>
-<p>
-  Организуйте задачи на досках: создавайте колонки и карточки, указывайте приоритеты и сроки,
-  перемещайте карточки между этапами. А подборка важных задач поможет понять, за что взяться в
-  первую очередь.
-</p>
+<header class="app-header">
+  <h1>Trello</h1>
 </header>
 <div class="app-layout">
   <aside class="board-sidebar" aria-label="Доски">
@@ -13,59 +8,128 @@
       <p>Загрузка досок...</p>
     }
     @if (loadError()) {
-      <p role="alert">Не удалось загрузить доски. Проверь, запущен ли бэкенд.</p>
+      <p class="action-error" role="alert">Не удалось загрузить доски. Проверь, запущен ли бэкенд.</p>
     }
-
-    <form (submit)="$event.preventDefault(); addBoard(boardName.value)">
-      <input #boardName placeholder="Название доски" />
-      <button type="submit">Создать доску</button>
-    </form>
 
     @if (!isLoading() && !loadError() && boards().length === 0) {
       <p>Досок пока нет. Создай первую.</p>
     }
 
     @for (board of boards(); track board.id) {
-      <div class="board-row">
-        <button type="button" (click)="toggleBoard(board.id)" [class.app-desk] ="openedBoardId === board.id" class = "board-name">{{ board.name }}</button>
-        <button type="button" (click)="boardActionsId = board.id" [attr.aria-label]="'Действия для доски ' + board.name">⋯</button>
-
-        @if (boardActionsId === board.id) {
-          <button type="button" (click)="deleteBoard(board.id)" >Удалить доску</button>
-        }
+      <div class="board-row" [class.app-desk]="openedBoardId === board.id">
+        <button type="button" class="board-name" (click)="toggleBoard(board.id)">{{ board.name }}</button>
+        <button class="board-more" type="button" (click)="toggleBoardActions(board.id)" [attr.aria-label]="'Действия для доски ' + board.name">⋯</button>
       </div>
+      @if (boardActionsId === board.id) {
+        <div class="board-delete">
+          <button type="button" class="delete-action" (click)="deleteBoard(board.id)">Удалить доску</button>
+        </div>
+      }
+      @if (boardDeleteErrorId() === board.id) {
+        <p class="action-error" role="alert">Не удалось удалить доску. Попробуй ещё раз.</p>
+      }
     }
+    <div class="create-board">
+      @if (creatingBoard()) {
+        <form (submit)="$event.preventDefault(); addBoard(boardName.value)">
+          <input #boardName aria-label="Название доски" placeholder="Название доски" />
+          <button type="submit">Добавить</button>
+          <button type="button" (click)="creatingBoard.set(false)">Отмена</button>
+        </form>
+        @if (boardCreateError()) {
+          <p class="action-error" role="alert">Не удалось создать доску. Попробуй ещё раз.</p>
+        }
+      } @else {
+        <button
+          class="create-trigger"
+          type="button"
+          (click)="creatingBoard.set(true); boardCreateError.set(false)"
+        >+ Новая доска</button>
+      }
+    </div>
   </aside>
 
   <main class="board-content">
     @if (!openedBoardId  && boards().length > 0 ){<p class="start-allert">Выбери доску слева, чтобы увидеть её колонки и карточки</p>}
   @for (board of boards(); track board.id) {
   @if (openedBoardId === board.id) {
-    <h2>{{ board.name }}</h2>
-    @if (focusErrorBoardId() === board.id) {
-      <p role="alert">Не удалось загрузить важные задачи.</p>
-    }
-    <div class="board-toolbar">
-      <button type="button" (click)="loadFocus(board.id)">Важные задачи</button>
-      <form (submit)="$event.preventDefault(); addCol(colName.value, board.id)">
-        <input #colName placeholder="Название колонки" />
-        <button type="submit">Добавить колонку</button>
-      </form>
+    <div class="board-heading">
+      <h2>{{ board.name }}</h2>
+      @if (creatingColumnBoardId() === board.id) {
+        <form class="create-column" (submit)="$event.preventDefault(); addCol(colName.value, board.id)">
+          <input #colName aria-label="Название колонки" placeholder="Название колонки" />
+          <button type="submit">Добавить</button>
+          <button type="button" (click)="creatingColumnBoardId.set(null)">Отмена</button>
+          @if (columnCreateErrorBoardId() === board.id) {
+            <p class="action-error" role="alert">Не удалось добавить колонку. Попробуй ещё раз.</p>
+          }
+        </form>
+      } @else {
+        <button
+          class="create-trigger"
+          type="button"
+          (click)="creatingColumnBoardId.set(board.id); columnCreateErrorBoardId.set(null)"
+        >+ Добавить колонку</button>
+      }
     </div>
-    @if (focusedBoardId() === board.id) {
-      <section class = "focus-panel">
-        <h3>Важные задачи</h3>
-        @for (focus of focusCards(); track focus.id) {
-          <p>{{ focus.title }} — {{ focus.reason }}</p>
-        } @empty {
-          <p>Важных задач пока нет</p>
+    <div class="board-toolbar">
+      <button
+        type="button"
+        (click)="loadFocus(board.id)"
+        [disabled]="focusLoadingBoardId() !== null"
+      >
+        @if (focusLoadingBoardId() === board.id) {
+          Загрузка…
+        } @else {
+          Важные задачи
         }
+      </button>
+    </div>
+    @if (focusErrorBoardId() === board.id) {
+      <p class="action-error" role="alert">Не удалось загрузить важные задачи.</p>
+    }
+    @if (focusedBoardId() === board.id) {
+      <section class="focus-panel">
+        <div class="focus-heading">
+          <h3>Важные задачи</h3>
+          <span>
+            Всего: {{focusCards().length}}
+          </span>
+        </div>
+        <div class="focus-items">
+          @for (focus of focusCards(); track focus.id) {
+            <article
+              class="focus-item"
+              [class.high-priority]="focus.priority === 'HIGH'"
+              [class.medium-priority]="focus.priority === 'MEDIUM'"
+              [class.low-priority]="focus.priority === 'LOW'"
+            >
+              <strong>{{ focus.title }}</strong>
+              <p>
+                <span class="priority-badge">
+                  @switch (focus.priority) {
+                    @case ('HIGH') { Высокий }
+                    @case ('MEDIUM') { Средний }
+                    @case ('LOW') { Низкий }
+                    @default { {{ focus.priority }} }
+                  }
+                </span>
+              </p>
+              <p class="focus-reason">{{ focusDeadlineLabel(focus.reason) }}</p>
+            </article>
+          } @empty {
+            <p>Важных задач пока нет</p>
+          }
+        </div>
       </section>
     }
     <div class="columns">
       @for (list of board.lists; track list.id) {
         <section class="task-list">
-          <h3>{{ list.name }}</h3>
+          <div class="column-heading">
+            <h3>{{ list.name }}</h3>
+            <span class="card-count">{{ list.cards.length }}</span>
+          </div>
           @for (card of list.cards; track card.id) {
             <article
               class="task-card"
@@ -90,8 +154,8 @@
                 </span>
               </p>
 
-              <p>
-                Дедлайн:
+              <p class="card-date">
+                Срок:
                 @if (card.dueDate) {
                   {{ card.dueDate }}
                 } @else {
@@ -99,43 +163,101 @@
                 }
               </p>
               @if (openedCardId === card.id) {
-              <label
-              >Переместить в колонку в:
-                <select #col>
-                  @for (target of board.lists; track target.id) {
-                  <option [value]="target.id">{{ target.name }}</option>
+              <div class="card-details">
+                <section class="card-description">
+                  <h4>Описание</h4>
+                  @if (editingDescriptionCardId === card.id) {
+                    <textarea #note rows="4" aria-label="Описание" [value]="card.description"></textarea>
+                    <div class="description-actions">
+                      <button type="button" class="card-action" (click)="changeCardDesc(card.id, note.value)">Сохранить</button>
+                      <button type="button" class="card-action" (click)="editingDescriptionCardId = null; descriptionErrorCardId.set(null)">Отмена</button>
+                    </div>
+                    @if (descriptionErrorCardId() === card.id) {
+                      <p class="action-error" role="alert">Не удалось сохранить описание. Попробуй ещё раз.</p>
+                    }
+                  } @else {
+                    @if (card.description) {
+                      <p>{{ card.description }}</p>
+                    } @else {
+                      <p class="description-empty">Описание пока не добавлено.</p>
+                    }
+                    <button type="button" class="card-action" (click)="editingDescriptionCardId = card.id; descriptionErrorCardId.set(null)">Изменить описание</button>
                   }
-                </select>
-              </label>
-              <button type="button" (click)="moveCard(card.id, col.value)">Переместить</button>
-                <p>{{ card.description }}</p>
-                <textarea #note rows="4" [value] = "card.description"></textarea>
-                <button type = "button" (click)="changeCardDesc(card.id,note.value)">Изменить описание</button>
-                <input #cardName placeholder="Новое название карточки">
-                <button type = "button" (click) = "changeCardTitle(card.id,cardName.value)">Поменять название</button>
-                <input type="date" #chosenDate [value]="card.dueDate">
-                <button type = "button" (click) = "changeDate(card.id,chosenDate.value)">Поменять дату</button>
-                <label>Приоритет
-                  <select #chosenPriority [value]="card.priority">
-                    <option value="LOW">Низкий</option>
-                    <option value="MEDIUM">Средний</option>
-                    <option value="HIGH">Высокий</option>
-                  </select>
-                </label>
-                <button type="button" (click)="changePriority(card.id, chosenPriority.value)">Сохранить приоритет</button>
-                <button type="button" (click)="deleteCard(card.id)">Удалить карточку</button>
+                </section>
+
+                <div class="card-setting">
+                  <label>
+                    Название карточки
+                    <input #cardName [value]="card.title" placeholder="Новое название карточки" />
+                  </label>
+                  <button type="button" class="card-action" (click)="changeCardTitle(card.id, cardName.value)">Поменять название</button>
+                </div>
+                <div class="card-setting">
+                  <label>
+                    Срок
+                    <input type="date" #chosenDate [value]="card.dueDate" />
+                  </label>
+                  <button type="button" class="card-action" (click)="changeDate(card.id, chosenDate.value)">Поменять дату</button>
+                </div>
+                <div class="card-setting">
+                  <label>
+                    Приоритет
+                    <select #chosenPriority [value]="card.priority">
+                      <option value="LOW">Низкий</option>
+                      <option value="MEDIUM">Средний</option>
+                      <option value="HIGH">Высокий</option>
+                    </select>
+                  </label>
+                  <button type="button" class="card-action" (click)="changePriority(card.id, chosenPriority.value)">Сохранить приоритет</button>
+                </div>
+                @if (board.lists.length > 1) {
+                  <div class="card-setting">
+                    <label>
+                      Переместить в колонку
+                      <select #col>
+                        @for (target of board.lists; track target.id) {
+                          @if (target.id !== list.id) {
+                            <option [value]="target.id">{{ target.name }}</option>
+                          }
+                        }
+                      </select>
+                    </label>
+                    <button type="button" class="card-action" (click)="moveCard(card.id, col.value)">Переместить</button>
+                    @if (moveErrorCardId() === card.id) {
+                      <p class="action-error" role="alert">Не удалось перенести карточку. Попробуй ещё раз.</p>
+                    }
+                  </div>
+                }
+                @if (cardActionError().cardId === card.id) {
+                  <p class="action-error" role="alert">{{ cardActionError().message }}</p>
+                }
+                <div class="card-delete">
+                  <button type="button" class="delete-action" (click)="deleteCard(card.id)">Удалить карточку</button>
+                </div>
+              </div>
               }
             </article>
           } @empty {
-            <p>У этой колонки нету карточек</p>
+            <p>В этой колонке пока нет карточек.</p>
           }
-          <form (submit)="$event.preventDefault(); addCard(newTitle.value, list.id)">
-            <input #newTitle placeholder="Название карточки" />
-            <button type="submit">Добавить карточку</button>
-          </form>
-          @if (cardCreateErrorListId() === list.id) {
-            <p role="alert">Не удалось создать карточку. Попробуй ещё раз.</p>
-          }
+          <div class="column-footer">
+            @if (creatingCardListId() === list.id) {
+              <form (submit)="$event.preventDefault(); addCard(newTitle.value, list.id)">
+                <input #newTitle aria-label="Название карточки" placeholder="Название карточки" />
+                <button type="submit">Добавить</button>
+                <button type="button" (click)="creatingCardListId.set(null)">Отмена</button>
+              </form>
+              @if (cardCreateErrorListId() === list.id) {
+                <p class="action-error" role="alert">Не удалось создать карточку. Попробуй ещё раз.</p>
+              }
+            } @else {
+              <button
+                type="button"
+                class="create-trigger"
+                (click)="creatingCardListId.set(list.id); cardCreateErrorListId.set(null)"
+              >+ Добавить карточку</button>
+            }
+          </div>
         </section>
       } @empty {
         <p>Эта доска пуста</p>

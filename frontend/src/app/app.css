@@ -1,7 +1,45 @@
 .app-header {
-  background-color:#0F172A;
+  background-color: #182640;
   color:#F8FAFC;
-  padding: 12px 24px;
+  padding: 16px 24px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+
+.board-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+
+.focus-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.focus-heading h3{
+  flex:1;
+}
+
+.focus-heading span {
+  color: #52627A;
+  font-size: 14px;
+}
+
+
+
+.board-heading h2 {
+  flex: 1;
+  margin: 0;
 }
 
 .start-allert{
@@ -13,18 +51,44 @@
 }
 
 .board-name{
-  flex:1;
-  text-align:left;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
   background-color: transparent;
-  border:none;
+  border: none;
+  border-radius: 8px;
   padding: 8px 12px;
+  color: #44546D;
+  font-size: 16px;
+  font-weight: 500;
 }
 
+.board-name:hover,
+.board-more:hover {
+  background-color: #E2E8F0;
+}
 
+.board-row.app-desk {
+  background-color: #D9E7FF;
+  border-left-color: #496FD8;
+}
 
-.app-desk{
-  background:#DBEAFE;
-  color: #1E40AF;
+.app-desk .board-name {
+  color: #224383;
+  font-weight: 700;
+}
+
+.board-more {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #44546D;
+  padding: 4px 8px;
+  font-size: 19px;
+}
+
+.create-board {
+  margin-top: 16px;
 }
 
 .app-button{
@@ -38,6 +102,31 @@
   background-color: #E2E8F0;
   padding: 2px 8px;
   border-radius: 999px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+
+
+.high-priority .priority-badge {
+  background-color: #FBE6E9;
+  color: #9F2431;
+}
+
+.medium-priority .priority-badge {
+  background-color: #FFF1D8;
+  color: #805400;
+}
+
+.low-priority .priority-badge {
+  background-color: #DCFCE7;
+  color: #166534;
+}
+
+.card-date,
+.focus-item p {
+  color: #52627A;
+  font-size: 14px;
 }
 
 .app-button:hover{
@@ -45,37 +134,67 @@
 }
 
 .focus-panel{
-  background: #EFF6FF;
+  background: #E9EEFF;
   padding: 16px;
   border-radius: 12px;
   margin-bottom:16px;
-  margin-top: 10px;
   inline-size: fit-content;
 }
 
+.focus-panel h3 {
+  margin: 0;
+  color: #283D83;
+}
+
+.focus-items,
+.create-board form,
+.board-heading form,
+.task-list form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.focus-item {
+  flex: 1;
+  min-width: 160px;
+  background-color: white;
+  border: 1px solid #DFE5EF;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.focus-item p {
+  margin: 8px 0 0;
+}
+
+.focus-item .focus-reason {
+  border-top: 1px solid #DFE5EF;
+  padding-top: 8px;
+}
 
 .board-toolbar{
   display:flex;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
 .board-sidebar{
   background-color: #EAF0F8;
   padding: 16px;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.board-sidebar h2 {
+  color: #62728C;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .board-content{
-  margin-left: 10px;
-
+  padding: 16px 24px 24px 0;
 }
-
-
-.app-header p{
-  color: #CBD5E1;
-}
-
-
 
 .app-layout {
   display: grid;
@@ -92,11 +211,30 @@
   display: flex;
   gap: 8px;
   margin-top: 12px;
+  border-left: 4px solid transparent;
+  border-radius: 8px;
+}
+
+.board-delete {
+  margin-top: 8px;
+  text-align: right;
+}
+
+.card-details input,
+.card-details select,
+.card-details textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 700px) {
   .app-layout {
     grid-template-columns: 1fr;
+  }
+
+  .board-content {
+    padding: 0 16px 16px;
   }
 }
 
@@ -106,32 +244,143 @@
   gap: 16px;
 }
 
+.card-details{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid #DFE5EF;
+  padding-top: 12px;
+}
+
+.delete-action {
+  padding: 6px 10px;
+  color: #9F2431;
+  background-color: #FBE6E9;
+  border: 1px solid #F5CDD3;
+  border-radius: 8px;
+}
+
+.delete-action:hover {
+  background-color: #F5CDD3;
+}
+
+.action-error {
+  color: #9F2431;
+  font-size: 14px;
+}
+
 .task-list {
   width: 260px;
   flex-shrink: 0;
   padding: 16px;
-  background: #f1f2f4;
-  border-radius: 8px;
+  background-color: #ECF0F6;
+  border-radius: 12px;
   padding-top: 4px;
+  display: flex;
+  flex-direction:column;
 }
 
+
+
+.card-description,
+.card-setting {
+  background-color: #F8FAFC;
+  border: 1px solid #DFE5EF;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.card-description {
+  background-color: #EFF6FF;
+  border-color: #BFDBFE;
+}
+
+.card-details .card-setting label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.card-setting input,
+.card-setting select {
+  margin-top: 4px;
+  font-weight: normal;
+}
+
+.card-delete {
+  border-top: 1px solid #DFE5EF;
+  padding-top: 12px;
+}
+
+.card-description h4 {
+  margin: 0 0 8px;
+}
+
+.card-description p {
+  margin: 0 0 12px;
+}
+
+.card-description .description-empty {
+  color: #52627A;
+}
+
+.card-details .card-action,
+.card-details .delete-action {
+  margin-bottom: 0;
+}
+
+.description-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.card-details .action-error {
+  margin: 8px 0 0;
+}
+
+.column-heading {
+  display: flex;
+  gap: 8px;
+}
+
+.column-heading h3 {
+  flex: 1;
+}
+
+.column-footer{
+  margin-top:auto;
+}
+
+.card-count {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: #DAE1EB;
+  color: #44546D;
+}
 
 .task-card {
   background: white;
   padding: 12px;
   margin-bottom: 10px;
+  border: 1px solid #DFE5EF;
   border-radius: 8px;
 }
 
-.task-card.high-priority {
+.task-card.high-priority,
+.focus-item.high-priority {
   border-left: 4px solid #d93025;
 }
 
-.task-card.medium-priority {
+.task-card.medium-priority,
+.focus-item.medium-priority {
   border-left: 4px solid #ba8e23;
 }
 
-.task-card.low-priority {
+.task-card.low-priority,
+.focus-item.low-priority {
   border-left: 4px solid green;
 }
 
@@ -143,4 +392,53 @@
 .task-card button {
   display: block;
   margin-bottom: 12px;
+}
+
+.create-board button,
+.board-heading button,
+.board-toolbar button,
+.card-action,
+.create-trigger,
+.task-list form button {
+  padding: 6px 10px;
+  background-color: white;
+  color: #365FC1;
+  border: 1px solid #CBD5E4;
+  border-radius: 8px;
+}
+
+.create-trigger {
+  text-align: left;
+  font-weight: 600;
+  padding: 10px 12px;
+}
+
+.create-board input,
+.board-heading input,
+.task-list form input,
+.card-details input,
+.card-details textarea,
+.card-details select{
+  min-width: 0;
+  padding: 6px 8px;
+  background-color: white;
+  border: 1px solid #CBD5E4;
+  border-radius: 8px;
+}
+
+.create-board input,
+.create-board button,
+.column-footer input,
+.column-footer button {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create-board .create-trigger {
+  font-size: 15px;
+}
+
+.create-column .action-error {
+  width: 100%;
+  margin: 0;
 }
