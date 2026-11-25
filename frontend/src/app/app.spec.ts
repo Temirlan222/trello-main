@@ -79,8 +79,76 @@ describe('App', () => {
   it('не отправляет запрос для названия из одних пробелов', () => {
     fixture.componentInstance.addCard('    ',10);
     http.expectNone({method:'POST', url:'/api/cards'});
-
-
-
     });
+
+  it('показывает доску из ответа сервера', () => {
+    const board = { id: 1, name: 'Демо', lists: [] };
+
+    fixture.detectChanges();
+    http.expectOne({method:'GET',url:'/api/boards'}).flush([board])
+    // 3. Обнови HTML и проверь текст кнопки доски.
+    fixture.detectChanges();
+    const page: HTMLElement = fixture.nativeElement;
+    const boardButton = page.querySelector('.board-name');
+    const title = boardButton?.textContent?.trim();
+    expect(title).toBe('Демо');
+  });
+  it('ошибка загрузки досок', () => {
+    fixture.detectChanges();
+    const request = http.expectOne({method:'GET',url:'/api/boards'});
+    request.flush(null,{ status:500,statusText:'ServerError'});
+    fixture.detectChanges();
+    const page: HTMLElement = fixture.nativeElement;
+    const boardButton = page.querySelector('[role="alert"]');
+    const title = boardButton?.textContent;
+    expect(title).toContain('Не удалось загрузить доски');
+    });
+  it('оставляет карточку в старой колонке и показывает ошибку переноса', () => {
+    const card = {
+      id: 42,
+      title: 'Написать тесты',
+      description: '',
+      priority: 'MEDIUM',
+      dueDate: null,
+    };
+
+    const board = {
+      id: 1,
+      name: 'Демо',
+      lists: [
+        { id: 10, name: 'В работе', isDone: false, cards: [card] },
+        { id: 11, name: 'Готово', isDone: true, cards: [] },
+      ],
+    };
+
+    fixture.detectChanges();
+    http.expectOne({ method: 'GET', url: '/api/boards' }).flush([board]);
+    fixture.componentInstance.toggleBoard(1);
+    fixture.componentInstance.toggleCard(42);
+    fixture.componentInstance.moveCard(42, '11');
+    const request = http.expectOne({
+      method: 'PATCH',
+      url: '/api/cards/42/move',
+    });
+    expect(request.request.body).toEqual({ taskListId: 11 });
+    request.flush(null, { status: 500, statusText: 'Server Error' });
+
+    fixture.detectChanges();
+    const page: HTMLElement = fixture.nativeElement;
+    const columns = page.querySelectorAll('.task-list');
+    expect(columns.length).toBe(2);
+
+    const source = columns[0];
+    const target = columns[1];
+
+    const cardTitle = source.querySelector('.task-card button')?.textContent?.trim();
+    expect(cardTitle).toBe(card.title);
+    expect(target.querySelector('.task-card')).toBeNull();
+
+    const errorMessage = source.querySelector('.task-card [role="alert"]')?.textContent;
+    expect(errorMessage).toContain('Не удалось перенести карточку');
+    http.expectNone({ method: 'GET', url: '/api/boards' });
+    http.verify();
+  });
+
 });
