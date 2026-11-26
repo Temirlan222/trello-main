@@ -1,12 +1,11 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Trello Frontend" type="js.build_tools.npm">
-    <package-json value="$PROJECT_DIR$/frontend/package.json" />
-    <command value="run" />
-    <scripts>
-      <script value="start" />
-    </scripts>
-    <node-interpreter value="project" />
-    <envs />
+  <configuration default="false" name="Trello Frontend" type="ShConfigurationType">
+    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/frontend/start.cmd" />
+    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/frontend" />
+    <option name="INTERPRETER_PATH" value="C:/Windows/System32/cmd.exe" />
+    <option name="INTERPRETER_OPTIONS" value="/d /c" />
+    <option name="EXECUTE_IN_TERMINAL" value="false" />
+    <option name="EXECUTE_SCRIPT_FILE" value="true" />
     <method v="2" />
   </configuration>
 </component>

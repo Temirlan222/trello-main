@@ -3,8 +3,5 @@ target/
 *.iml
 
 # Local database credentials
-src/main/resources/application.properties
+backend/main/resources/application.properties
 .env
-
-# Personal coding assistant instructions
-AGENTS.md

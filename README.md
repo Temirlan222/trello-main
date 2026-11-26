@@ -1,25 +1,44 @@
 # Mini Trello
 
-## Цель фронтенда
+Канбан-доска для работы с задачами. В интерфейсе можно создавать доски и колонки, добавлять и редактировать карточки, переносить их между колонками и открывать подборку важных задач. Данные хранятся в PostgreSQL.
 
-[Макет и критерии готовности](frontend/design/target-ui.md) · [изображение макета](frontend/design/target-ui.svg)
+**Стек** — Angular, TypeScript, Java 17, Spring Boot, Spring Data JPA, PostgreSQL и Maven.
 
-[Минимальный план фронтенда](frontend/design/frontend-plan.md)
+## Подготовка
 
-Учебный REST API для управления задачами: доски, колонки и карточки.
-Можно создавать задачи, менять приоритет и дедлайн, перемещать карточки между колонками.
-Эндпоинт `/api/boards/{id}/focus` возвращает до трёх задач с учётом приоритета и дедлайна.
+1. Установите JDK 17+, Maven, Node.js 26 с npm и PostgreSQL. Запустите PostgreSQL и создайте базу `Trello`, как указано в шаблоне. В SQL имя с заглавной буквой пишется в кавычках: `CREATE DATABASE "Trello";`.
+2. Скопируйте [`backend/main/resources/application.example.properties`](backend/main/resources/application.example.properties) в `backend/main/resources/application.properties`. Укажите адрес базы, имя пользователя и пароль. Если база называется иначе, измените `spring.datasource.url`.
+3. Установите зависимости фронтенда из корня репозитория.
 
-**Стек:** Java 17, Spring Boot, Spring Data JPA, PostgreSQL, Maven.
+   ```powershell
+   cd frontend
+   npm.cmd ci
+   ```
 
-## Запуск
+## Запуск фронтенда и бэкенда
 
-1. Установить JDK 17+ и Maven, запустить PostgreSQL и создать базу `Trello`.
-2. Скопировать `src/main/resources/application.example.properties` в `src/main/resources/application.properties` и указать свои данные подключения к базе.
-3. В корне проекта выполнить:
+### Через IntelliJ IDEA на Windows
 
-```bash
+Откройте корень репозитория с `pom.xml` как Maven-проект и выберите JDK. В списке конфигураций запуска выберите **Trello Full Stack** и нажмите **Run**. Эта конфигурация запускает Spring Boot и Angular вместе. PostgreSQL должен быть запущен отдельно.
+
+### Через два терминала
+
+В первом терминале из корня репозитория запустите Spring Boot.
+
+```powershell
 mvn spring-boot:run
 ```
 
-Swagger UI: http://localhost:8080/swagger-ui/index.html
+Во втором терминале из корня репозитория запустите Angular. Первый терминал оставьте открытым.
+
+```powershell
+cd frontend
+npm.cmd start
+```
+
+### Куда зайти после запуска
+
+- [Mini Trello](http://localhost:4200/) — интерфейс для работы с досками.
+- [Swagger UI](http://localhost:8080/swagger-ui/index.html) — документация и ручная проверка API.
+
+Во время разработки Angular отправляет запросы `/api` на Spring Boot через [настроенный прокси](frontend/proxy.conf.json). Чтобы проверить весь путь, создайте доску и карточку в интерфейсе, затем обновите страницу и убедитесь, что данные сохранились.
